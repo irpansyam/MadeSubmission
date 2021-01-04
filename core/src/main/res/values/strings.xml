@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="image">Image</string>
+    <string name="sample_title_text">Sample of title text</string>
+    <string name="sample_subtitle_text">Sample of subtitle text</string>
+    <string name="vote_average_sample">80 %</string>
+</resources>
