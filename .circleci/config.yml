@@ -1,7 +1,7 @@
-version: 2.1
+version: 2
  
 orbs:
-  android: circleci/android@0.2.1
+  android: circleci/android@0.2
  
 jobs:
   build:
@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: android-orb-v1-
+          key: 'android-orb-v1-{{ epoch }}'
       - run:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
