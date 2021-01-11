@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/viewNoData"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_above="@+id/tv_empty"
@@ -21,6 +22,7 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="@string/no_data"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/design_default_color_on_primary"/>
 
 </RelativeLayout>

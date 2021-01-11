@@ -59,6 +59,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_fragment_ktx"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_ui_ktx"
 
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
 
 
 

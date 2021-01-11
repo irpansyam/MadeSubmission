@@ -3,14 +3,9 @@ package com.irpansyam.madesub1.favorite
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.irpansyam.madesub1.core.data.Resource
-import com.irpansyam.madesub1.core.domain.model.Movie
 import com.irpansyam.madesub1.core.ui.MovieAdapter
 import com.irpansyam.madesub1.detail.DetailMovieActivity
 import com.irpansyam.madesub1.favorite.databinding.ActivityFavoriteBinding
@@ -38,41 +33,17 @@ class FavoriteActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.progressBar.visibility = View.VISIBLE
         favoriteViewModel.favoriteMovie.observe(this, { movie ->
-            if (movie != null) {
-                Log.d("Favorite Activity", "Data result size = ${movie.size}" )
-
-                val listMovie:MutableList<Movie> = movie as MutableList<Movie>
-                if (listMovie.isNotEmpty()){
-                    binding.progressBar.visibility = View.GONE
-                    movieAdapter.setData(listMovie)
-                }else if (listMovie.isEmpty()){
-                    binding.progressBar.visibility = View.GONE
-                    listMovie.clear()
-                    movieAdapter.setData(listMovie)
-                    movieAdapter.notifyDataSetChanged()
-                    Toast.makeText(this, "Data favorite still empty", Toast.LENGTH_SHORT).show()
-                }
-
-
-                /**
-                when(movie) {
-                    is Resource.Loadin-> binding.progressBar.visibility = View.VISIBLE
-                    is Resource.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        Log.d("FavoriteActivity", "Data result ${movie.data.toString()}")
-                        movieAdapter.setData(movie.data )
-                    }
-                    is Resource.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.viewError.root.visibility = View.VISIBLE
-                        binding.viewError.tvError.text = movie.message ?: getString(R.string.text_error)
-                    }
-                }
-                **/
-
+            movieAdapter.setData(movie)
+            if (movie.isNotEmpty()){
+                binding.viewNoData.visibility = View.GONE
+                binding.tvNodata.visibility = View.GONE
+            }else{
+                binding.viewNoData.visibility = View.VISIBLE
+                binding.tvNodata.visibility = View.VISIBLE
+                Toast.makeText(this, "Data favorite still empty", Toast.LENGTH_SHORT).show()
             }
+
         })
 
         with(binding.rvFavorite) {

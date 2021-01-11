@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -56,6 +57,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_favorite -> {
                 val uri = Uri.parse("madesub1://favorite")
                startActivity(Intent(Intent.ACTION_VIEW, uri))
+            }
+            R.id.nav_more -> {
+                Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show()
             }
         }
         if (fragment != null){
