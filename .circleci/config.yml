@@ -1,15 +1,14 @@
 version: 2
-executors:
-  my-executor:
-    docker:
-      - image: circleci/android:api-28-node
-    working_directory: ~/code
-    environment:
-      _JAVA_OPTS: -Xmx2048m
-      GRADLE_OPTS: -Xmx1536m -XX:+HeapDumpOnOutOfMemoryError -Dorg.gradle.caching=true -Dorg.gradle.configureondemand=true -Dkotlin.compiler.execution.strategy=in-process -Dkotlin.incremental=false
 jobs:
   build:
-    executor: my-executor
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-25-alpha
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    environment:
+      JVM_OPTS: -Xmx3200m
     steps:
       - checkout
       - restore_cache:
