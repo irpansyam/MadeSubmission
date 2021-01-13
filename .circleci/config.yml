@@ -1,14 +1,10 @@
-version: 2
+version: 2.1
+ 
+orbs:
+  android: circleci/android@0.2.1
 jobs:
   build:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-25-alpha
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    environment:
-      JVM_OPTS: -Xmx3200m
+    executor: android/android
     steps:
       - checkout
       - restore_cache:
